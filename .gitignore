@@ -2,3 +2,4 @@
 test_base_model.py
 .vscode
 /tests/__pycache__
+test_base_model_dict.py
