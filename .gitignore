@@ -1,1 +1,4 @@
 0-Checklist.md
+test_base_model.py
+.vscode
+/tests/__pycache__
