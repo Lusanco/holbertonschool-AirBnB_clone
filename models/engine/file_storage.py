@@ -26,7 +26,10 @@ class FileStorage:
     def save(self):
         serialized_objs = {}
         for key, obj in self.__objects.items():
-            serialized_objs[key] = obj.to_dict() if hasattr(obj, "to_dict") else obj
+            if hasattr(obj, "to_dict"):
+                serialized_objs[key] = obj.to_dict()
+            else:
+                serialized_objs[key] = obj
 
         with open(self.__file_path, "w") as file:
             json.dump(serialized_objs, file)
