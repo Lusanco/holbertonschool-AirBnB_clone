@@ -24,21 +24,18 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        serialized_objs = {}
-        for key, obj in self.__objects.items():
-            if hasattr(obj, "to_dict"):
-                serialized_objs[key] = obj.to_dict()
-            else:
-                serialized_objs[key] = obj
-
-        with open(self.__file_path, "w") as file:
-            json.dump(serialized_objs, file)
+        with open(self.__file_path, 'w') as file:
+            dictionary_for_json = {}
+            for key, obj in self.__objects.items():
+                dictionary_for_json[key] = obj.to_dict()
+            json.dump(dictionary_for_json, file)
 
     def reload(self):
+        from models.base_model import BaseModel
         try:
-            with open(self.__file_path, "r") as file:
-                file_content = file.read()
-                if file_content:
-                    self.__objects = json.loads(file_content)
-        except (FileNotFoundError, json.JSONDecodeError):
+            with open(self.__file_path, 'r') as file:
+                dictionary_from_json = json.load(file)
+                for key, obj_dictionary in dictionary_from_json.items():
+                    self.__objects[key] = BaseModel(**obj_dictionary)
+        except FileNotFoundError:
             pass
