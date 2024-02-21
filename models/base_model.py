@@ -8,6 +8,7 @@ Author: Livanhernandez, Lusanco
 """
 
 
+from models import storage
 from datetime import datetime
 import uuid
 
@@ -27,11 +28,13 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
 
     def __str__(self):
         return "[{}] ({}) {}".format("BaseModel", self.id, self.__dict__)
 
     def save(self):
+        storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):
