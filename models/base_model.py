@@ -34,8 +34,8 @@ class BaseModel:
         return "[{}] ({}) {}".format("BaseModel", self.id, self.__dict__)
 
     def save(self):
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         result = self.__dict__.copy()
