@@ -40,21 +40,18 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args.split()[0]
+
         if class_name not in storage.all().keys():
             print("** class doesn't exist **")
             return
 
         try:
             new_instance = eval(class_name)()
-            new_instance.save()
+            storage.new(new_instance)
+            storage.save()
             print(new_instance.id)
         except Exception as e:
-            print(f"** Error: {e} **")
-
-        file_path = os.path.join("")
-        if not os.path.exists("file.json"):
-            print("Error: File 'file.json' not found. Please create it first.")
-            return
+            print(f"** Error creating instance: {e} **")
 
     def do_show(self, args):
         """Prints str representation of instance."""
