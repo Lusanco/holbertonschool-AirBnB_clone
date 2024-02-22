@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 Module: console
 Descri: class HBNBCommand interpreter for
@@ -107,9 +108,9 @@ class HBNBCommand(cmd.Cmd):
         instance_string = []
 
         for instance in filtered_instances.value():
-            instance_strings.append(str(instance))
+            instance_string.append(str(instance))
         
-        print("\n".join(instance_strings))
+        print("\n".join(instance_string))
 
     def do_update(self, args):
         """Updates an instance based on the class name, ID, attribute
