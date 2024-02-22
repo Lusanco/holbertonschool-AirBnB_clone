@@ -32,6 +32,7 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
+        """Returns str in representation of an object"""
         return "[{}] ({}) {}".format("BaseModel", self.id, self.__dict__)
 
     def save(self):
