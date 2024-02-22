@@ -9,6 +9,7 @@ Author: Livanhernandez, Lusanco
 
 import cmd
 import json
+import os
 from models import storage
 from models.base_model import BaseModel
 
@@ -48,6 +49,11 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
         except Exception as e:
             print(f"** Error: {e} **")
+
+        file_path = os.path.join("")
+        if not os.path.exists("file.json"):
+            print("Error: File 'file.json' not found. Please create it first.")
+            return
 
     def do_show(self, args):
         """Prints str representation of instance."""
