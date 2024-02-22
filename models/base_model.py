@@ -41,6 +41,7 @@ class BaseModel:
         storage.save()
 
     def to_dict(self):
+        """Copies dictionary"""
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
         result["created_at"] = self.created_at.isoformat()
