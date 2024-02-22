@@ -17,6 +17,7 @@ class BaseModel:
     """BaseModel Class"""
 
     def __init__(self, *args, **kwargs):
+        """Instance method that initializes a new object"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -31,13 +32,16 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
+        """Returns str in representation of an object"""
         return "[{}] ({}) {}".format("BaseModel", self.id, self.__dict__)
 
     def save(self):
+        """Saves datetime and JSON file storage in storage"""
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
+        """Copies dictionary"""
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
         result["created_at"] = self.created_at.isoformat()
