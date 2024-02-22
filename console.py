@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+"""
+Module: console
+Descri: class HBNBCommand interpreter for
+managing data.
+Author: Livanhernandez, Lusanco
+"""
+
 
 import cmd
 
