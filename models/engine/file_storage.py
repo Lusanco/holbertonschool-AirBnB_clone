@@ -34,6 +34,7 @@ class FileStorage:
             json.dump(dictionary_for_json, file)
 
     def reload(self):
+        """Reloads JSON dict"""
         from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r') as file:
