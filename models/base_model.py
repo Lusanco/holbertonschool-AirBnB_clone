@@ -36,6 +36,7 @@ class BaseModel:
         return "[{}] ({}) {}".format("BaseModel", self.id, self.__dict__)
 
     def save(self):
+        """Saves datetime and JSON file storage in storage"""
         self.updated_at = datetime.now()
         storage.save()
 
