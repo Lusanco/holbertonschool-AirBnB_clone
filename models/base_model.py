@@ -18,7 +18,6 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instance method that initializes a new object"""
-        self.test_name = None
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":

@@ -162,6 +162,13 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute cannot be updated **")
             return
 
+        if attribute_name == "None":
+            print("** value cannot be None **")
+            return
+
+        if getattr(instance, attribute_name, None) is None:
+            setattr(instance, attribute_name, None)
+
         attribute_type = type(getattr(instance, attribute_name))
         try:
             casted_value = attribute_type(attribute_value)
