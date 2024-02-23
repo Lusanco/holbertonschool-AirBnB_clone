@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         class_name = args[0]
 
-        if class_name not in storage.all():
+        if class_name not in ["BaseModel"]:
             print("** class doesn't exist **")
             return
 
@@ -135,7 +135,6 @@ class HBNBCommand(cmd.Cmd):
             return
 
         instance_id = args[1]
-
         key = "{}.{}".format(class_name, instance_id)
 
         if key not in storage.all():
@@ -151,11 +150,24 @@ class HBNBCommand(cmd.Cmd):
             return
 
         attribute_name = args[2]
-        attribute_value = args[3]
+        attribute_value = " ".join(args[3:])
 
         instance = storage.all()[key]
-        setattr(instance, attribute_name, attribute_value)
+
+        if attribute_name in ["id", "created_at", "updated_at"]:
+            print("** attribute cannot be updated **")
+            return
+
+        attribute_type = type(getattr(instance, attribute_name))
+        try:
+            casted_value = attribute_type(attribute_value)
+        except ValueError:
+            print("** value missing **")
+            return
+
+        setattr(instance, attribute_name, casted_value)
         instance.save()
+        storage.save()
 
 
 if __name__ == '__main__':
