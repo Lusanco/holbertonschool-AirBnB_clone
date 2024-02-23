@@ -82,6 +82,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in storage.all().keys():
             print("** class doesn't exist **")
             return
+
         if len(args) < 2:
             print("** instance id missing **")
             return
@@ -89,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         instance_id = args[1]
         key = "{}.{}".format(class_name, instance_id)
 
-        if key in storage.all():
+        if key not in storage.all():
             print("** no instance found **")
             return
         
