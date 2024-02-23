@@ -39,12 +39,12 @@ class HBNBCommand(cmd.Cmd):
 
         class_name = args.split()[0]
 
-        if class_name not in storage.all().keys():
+        if class_name not in ["BaseModel"]:
             print("** class doesn't exist **")
             return
 
-        new_instance = storage.create(class_name)
-        storage.save()
+        new_instance = BaseModel()
+        new_instance.save()
         print(new_instance.id)
 
     def do_show(self, args):
