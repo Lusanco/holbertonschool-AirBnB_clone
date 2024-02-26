@@ -19,41 +19,35 @@ class FileStorage:
     __objects = {}
 
     def __init__(self):
-        self.__file_path = "file.json"
-        self.__objects = {}
-
+        pass
     def all(self):
         """Return objects"""
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """Saves new obj on dict"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """Saves JSON dict"""
-        from models import storage
-        with open(self.__file_path, "w") as file:
-            dictionary_for_json = {}
-            for key, obj in self.__objects.items():
-                dictionary_for_json[key] = obj.to_dict()
-            json.dump(dictionary_for_json, file)
+        json_dict = {}
+        for key, value in FileStorage.__objects.items():
+            json_dict[key] = value.to_dict()
+        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as file:
+            json.dump(json_dict, file)
 
     def reload(self):
         """Reloads JSON dict"""
         from models.base_model import BaseModel
         try:
-            with open(self.__file_path, 'r') as file:
-                loaded_objs = json.load(file)
-                for key, obj_dictionary in loaded_objs.items():
-                    class_name, obj_id = key.split('.')
-                    if class_name == "User":
-                        obj_instance = User(**obj_dictionary)
-                    elif class_name == "BaseModel":
-                        obj_instance = BaseModel(**obj_dictionary)
-                    else:
-                        continue
-                    self.__objects[key] = obj_instance
+            with open(FileStorage.__file_path, mode='r', encoding="utf-8") as file:
+                json_dictionary = json.load(file)
+                for key, value in json_dictionary.items():
+                    class_name, obj_id = key.split(".")
+                    obj_dict = value
+                    obj_dict["__class__"] = class_name
+                    obj = eval(class_name)(**obj_dict)
+                    FileStorage.__objects[key] = obj
         except FileNotFoundError:
             pass
