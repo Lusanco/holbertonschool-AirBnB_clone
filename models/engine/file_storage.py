@@ -10,6 +10,7 @@ Author: Livanhernandez, Lusanco
 
 
 import json
+from models.user import User
 
 
 class FileStorage:
