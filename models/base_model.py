@@ -36,8 +36,9 @@ class BaseModel:
         return "[{}] ({}) {}".format("BaseModel", self.id, self.__dict__)
 
     def save(self):
-        """Saves datetime and JSON file storage in storage"""
-        self.updated_at = datetime.now()
+        """Saves the current instance to the storage"""
+        from models import storage
+        storage.new(self)
         storage.save()
 
     def to_dict(self):
@@ -47,3 +48,11 @@ class BaseModel:
         result["created_at"] = self.created_at.isoformat()
         result["updated_at"] = self.updated_at.isoformat()
         return result
+
+    def reload(self):
+        from models import storage
+        all_objects = storage.all()
+        key = "{}.{}".format(self.__class__.__name__, self.id)
+        if key in all_objects:
+            obj = all_objects[key]
+            self.__dict__.update(obj.__dict__)
