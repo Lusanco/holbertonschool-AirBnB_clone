@@ -30,6 +30,7 @@ class FileStorage:
     def save(self):
         """Saves JSON dict"""
         json_dict = {}
+        from models.base_model import BaseModel
         for key, value in FileStorage.__objects.items():
             json_dict[key] = value.to_dict()
         with open(FileStorage.__file_path, mode="w", encoding="utf-8") as file:
