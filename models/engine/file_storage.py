@@ -41,21 +41,17 @@ class FileStorage:
 
     def reload(self):
         """Reloads JSON dict"""
-        from models.base_model import BaseModel
-
         try:
             with open(self.__file_path, 'r') as file:
                 loaded_objs = json.load(file)
                 for key, obj_dictionary in loaded_objs.items():
                     class_name, obj_id = key.split('.')
                     if class_name == "User":
-                        obj_instance = User()
+                        obj_instance = User(**obj_dictionary)
                     elif class_name == "BaseModel":
-                        obj_instance = BaseModel()
+                        obj_instance = BaseModel(**obj_dictionary)
                     else:
                         continue
-                    for attr, val in obj_dictionary.items():
-                        setattr(obj_instance, attr, val)
                     self.__objects[key] = obj_instance
         except FileNotFoundError:
             pass
