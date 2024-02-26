@@ -33,7 +33,7 @@ class FileStorage:
 
     def save(self):
         """Saves JSON dict"""
-        with open(self.__file_path, 'w') as file:
+        with open(self.__file_path, "w") as file:
             dictionary_for_json = {}
             for key, obj in self.__objects.items():
                 dictionary_for_json[key] = obj.to_dict()
@@ -42,6 +42,7 @@ class FileStorage:
     def reload(self):
         """Reloads JSON dict"""
         from models.base_model import BaseModel
+
         try:
             with open(self.__file_path, 'r') as file:
                 loaded_objs = json.load(file)

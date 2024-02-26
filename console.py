@@ -2,8 +2,8 @@
 
 """
 Module: console
-Descri: class HBNBCommand interpreter for
-managing data.
+Descri: class HBNBCommand
+interpreter for managing data.
 Author: Livanhernandez, Lusanco
 """
 
@@ -11,13 +11,15 @@ Author: Livanhernandez, Lusanco
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 from datetime import datetime
 from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand interpreter for managing data."""
-    prompt = '(hbnb) '
+
+    prompt = "(hbnb) "
 
     def do_quit(self, args):
         """Quit command to exit the program"""
@@ -74,20 +76,19 @@ class HBNBCommand(cmd.Cmd):
 
         print(storage.all()[key])
 
-
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id."""
         if not args:
             print("** class name missing **")
             return
-        
+
         args = args.split()
         class_name = args[0]
 
         if class_name not in ["BaseModel"]:
             print("** class doesn't exist **")
             return
-        
+
         if len(args) < 2:
             print("** instance id missing **")
             return
@@ -98,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
         if key not in storage.all():
             print("** no instance found **")
             return
-        
+
         del storage.all()[key]
         storage.save()
 
@@ -111,9 +112,9 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(obj))
             print(obj_list)
             return
-        
+
         class_name = args[0]
-        classes = [key.split('.')[0] for key in storage.all().keys()]
+        classes = [key.split(".")[0] for key in storage.all().keys()]
         if class_name not in classes:
             print("** class doesn't exist **")
             return
@@ -166,12 +167,12 @@ class HBNBCommand(cmd.Cmd):
         if getattr(instance, attribute_name, None) is None:
             setattr(instance, attribute_name, None)
 
-        attribute_type = (getattr(instance, attribute_name))
+        attribute_type = getattr(instance, attribute_name)
         if attribute_type is None:
             setattr(instance, attribute_name, attribute_value)
             instance.save()
             storage.save()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
