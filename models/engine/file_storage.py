@@ -32,10 +32,8 @@ class FileStorage:
         json_dict = {}
         for key, value in FileStorage.__objects.items():
             json_dict[key] = value.to_dict()
-        print("Objects to save:", json_dict)
         with open(FileStorage.__file_path, mode="w", encoding="utf-8") as file:
             json.dump(json_dict, file)
-        print("File saved succesfully")
 
     def reload(self):
         """Reloads JSON dict"""
