@@ -18,7 +18,6 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instance method that initializes a new object"""
-        pass
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -38,13 +37,11 @@ class BaseModel:
 
     def save(self):
         """Saves datetime and JSON file storage in storage"""
-        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
         """Copies dictionary"""
-        pass
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
         result["created_at"] = self.created_at.isoformat()

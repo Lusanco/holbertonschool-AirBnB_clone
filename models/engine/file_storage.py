@@ -19,7 +19,6 @@ class FileStorage:
     __objects = {}
 
     def __init__(self):
-        pass
         self.__file_path = "file.json"
         self.__objects = {}
 
@@ -44,7 +43,6 @@ class FileStorage:
     def reload(self):
         """Reloads JSON dict"""
         from models.base_model import BaseModel
-        pass
         try:
             with open(self.__file_path, 'r') as file:
                 loaded_objs = json.load(file)
