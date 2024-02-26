@@ -19,6 +19,7 @@ class FileStorage:
     __objects = {}
 
     def __init__(self):
+        pass
         self.__file_path = "file.json"
         self.__objects = {}
 
@@ -33,6 +34,7 @@ class FileStorage:
 
     def save(self):
         """Saves JSON dict"""
+        from models import storage
         with open(self.__file_path, "w") as file:
             dictionary_for_json = {}
             for key, obj in self.__objects.items():
@@ -41,6 +43,8 @@ class FileStorage:
 
     def reload(self):
         """Reloads JSON dict"""
+        from models.base_model import BaseModel
+        pass
         try:
             with open(self.__file_path, 'r') as file:
                 loaded_objs = json.load(file)
