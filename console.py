@@ -12,6 +12,7 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from datetime import datetime
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -39,11 +40,11 @@ class HBNBCommand(cmd.Cmd):
 
         class_name = args.split()[0]
 
-        if class_name not in ["BaseModel"]:
+        if class_name not in ["User"]:
             print("** class doesn't exist **")
             return
 
-        new_instance = BaseModel()
+        new_instance = User()
         new_instance.save()
         print(new_instance.id)
 

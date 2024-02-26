@@ -10,11 +10,17 @@ Author: Livanhernandez, Lusanco
 
 
 import json
+from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
+
+    def __init__(self):
+        self.__file_path = "file.json"
+        self.__objects = {}
 
     def all(self):
         """Return objects"""
@@ -38,8 +44,17 @@ class FileStorage:
         from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r') as file:
-                dictionary_from_json = json.load(file)
-                for key, obj_dictionary in dictionary_from_json.items():
-                    self.__objects[key] = BaseModel(**obj_dictionary)
+                loaded_objs = json.load(file)
+                for key, obj_dictionary in loaded_objs.items():
+                    class_name, obj_id = key.split('.')
+                    if class_name == "User":
+                        obj_instance = User()
+                    elif class_name == "BaseModel":
+                        obj_instance = BaseModel()
+                    else:
+                        continue
+                    for attr, val in obj_dictionary.items():
+                        setattr(obj_instance, attr, val)
+                    self.__objects[key] = obj_instance
         except FileNotFoundError:
             pass
