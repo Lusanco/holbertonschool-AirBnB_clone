@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         class_name = args[0]
 
-        if class_name not in ["BaseModel"]:
+        if class_name not in ["BaseModel", "User"]:
             print("** class doesn't exist **")
             return
 
@@ -99,13 +99,9 @@ class HBNBCommand(cmd.Cmd):
         if key not in storage.all():
             print("** no instance found **")
             return
-        
-        print("Deleting instance:", key)
 
         del storage.all()[key]
         storage.save()
-
-        print("Instance deleted succesfully")
 
     def do_all(self, args):
         """Prints all string representation of all instances."""
