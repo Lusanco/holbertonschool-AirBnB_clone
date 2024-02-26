@@ -33,16 +33,6 @@ class FileStorage:
                 dictionary_for_json[key] = obj.to_dict()
             json.dump(dictionary_for_json, file)
 
-    def destroy(self, obj):
-        """
-        Delete obj from __objects and update the JSON file
-        """
-        if obj:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            if key in self.__objects:
-                del self.__objects[key]
-                self.save()  # Save the updated dictionary to the JSON file
-
     def reload(self):
         """Reloads JSON dict"""
         from models.base_model import BaseModel
