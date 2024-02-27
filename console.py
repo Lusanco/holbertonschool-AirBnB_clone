@@ -161,6 +161,7 @@ class HBNBCommand(cmd.Cmd):
         instance = storage.all()[key]
 
         if not hasattr(instance, attribute_name):
+            from models.user import User
             print("** attribute doesn't exist **")
             return
         setattr(instance, attribute_name, attribute_value)
