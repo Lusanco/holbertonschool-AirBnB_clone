@@ -37,18 +37,39 @@ class FileStorage:
         """Reloads JSON dict"""
         from models.base_model import BaseModel
         from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+
         try:
             with open(self.__file_path, 'r') as file:
                 json_dictionary = json.load(file)
                 for key, value in json_dictionary.items():
                     class_name = value["__class__"]
                     if class_name == 'User':
-                        cls = User
-                        obj = cls(**value)
+                        obj = class_name(**value)
                         self.__objects[key] = obj
                     elif class_name == "BaseModel":
-                        cls = BaseModel
-                        obj = cls(**value)
-                    self.__objects[key] = obj
+                        obj = class_name(**value)
+                        self.__objects[key] = obj
+                    elif class_name == "Place":
+                        obj = class_name(**value)
+                        self.__objects[key] = obj
+                    elif class_name == "State":
+                        obj = class_name(**value)
+                        self.objects[key] = obj
+                    elif class_name == "City":
+                        obj = class_name(**value)
+                        self.objects[key] = obj
+                    elif class_name == "Amenity":
+                        obj = class_name(**value)
+                        self.objects[key] = obj
+                    elif class_name == "Review":
+                        obj = class_name(**value)
+                        self.objects[key] = obj
+                    
+        
         except FileNotFoundError:
             pass
