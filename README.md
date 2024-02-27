@@ -38,27 +38,27 @@ cd <project-directory>
 ```
 
 ### Available commands
-- 'quit' : Quit the program.
-- 'EOF' : Exit the program.
-- 'help' : Display available commands.
-- 'create <class_name> : Create a new instance of the specified class.
-- 'show >class_name> <instance.id>' : Show the string representation of an instance.
-- 'destroy <class_name> <instance.id>' : Delete an instance based on the class name and ID.
-- 'all [class_name]' : Print all string representation of instances or of a specific class.
-- 'update <class_name> <instance.id> <attribute_name> "<attribute_value>"' : Update an instance attribute based on the class name and ID.
-- 'count()' : Prints total number of instances of a class or all instances.
+- *`quit`* : Quit the program.
+- *`EOF`* : Exit the program.
+- *`help`* : Display available commands.
+- *`create <class_name>`* : Create a new instance of the specified class.
+- *`show >class_name> <instance.id>`* : Show the string representation of an instance.
+- *`destroy <class_name> <instance.id>`* : Delete an instance based on the class name and ID.
+- *`all [class_name]`* : Print all string representation of instances or of a specific class.
+- *`update <class_name> <instance.id> <attribute_name> "<attribute_value>"`* : Update an instance attribute based on the class name and ID.
+- *`count()`* : Prints total number of instances of a class or all instances.
 
 ## File Structure
 
 The project contains the following files:
 
-- 'README.md' : Contains description of the project with instructions.
-- 'console.py': The main Python file containing the command-line interface (CLI) for interacting with the application.
-- user.py: Defines the User class that inherits from BaseModel.
-- file_storage.py: Defines the FileStorage class responsible for serializing and deserializing instances to and from a JSON file.
-- base_model.py: Defines the BaseModel class that serves as the base class for other classes in the project.
-- __init__.py: Initializes the project as a Python module.
-- Other files: Define sub-classes such as Amenity, City, Place, Review, and State, all of which inherit from BaseModel.
+- *`README.md`* : Contains description of the project with instructions.
+- *`console.py`*: The main Python file containing the command-line interface (CLI) for interacting with the application.
+- *`user.py`*: Defines the User class that inherits from BaseModel.
+- *`file_storage.py`*: Defines the FileStorage class responsible for serializing and deserializing instances to and from a JSON file.
+- *`base_model.py`*: Defines the BaseModel class that serves as the base class for other classes in the project.
+- *`__init__.py`*: Initializes the project as a Python module.
+- *`Other files`*: Define sub-classes such as Amenity, City, Place, Review, and State, all of which inherit from BaseModel.
 
 ## Resources
 - *[Args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/)*
