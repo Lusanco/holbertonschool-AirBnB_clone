@@ -15,7 +15,7 @@ class TestFileStorage(unittest.TestCase):
         """Set up for the tests"""
         self.storage = FileStorage()
         self.model = BaseModel()
-        self.model.save()
+        self.model.updated_at = datetime.now()
 
     def test_file_path(self):
         """Test the __file_path attribute"""
@@ -62,15 +62,15 @@ class TestFileStorage(unittest.TestCase):
         self.model.save()
 
         # Manually modify the JSON file to simulate changes that would be loaded
-        with open("file.json", "r") as f:
-            data = json.load(f)
+        with open("file.json", "r") as file:
+            data = json.load(file)
 
         # Modify an attribute directly in the file data to simulate a change
         key = f"BaseModel.{self.model.id}"
         data[key]["custom_attribute"] = "Test Reload"
 
-        with open("file.json", "w") as f:
-            json.dump(data, f)
+        with open("file.json", "w") as file:
+            json.dump(data, file)
 
         # Reload the storage to reflect changes made directly in the JSON file
         self.storage.reload()
@@ -83,9 +83,9 @@ class TestFileStorage(unittest.TestCase):
 
         # Ensure the custom attribute matches the modified value
         loaded_model = all_objects[key]
-        self.assertFalse("custom_attribute" in loaded_model.to_dict())
-        # self.assertTrue('custom_attribute' in loaded_model.to_dict())
-        # self.assertEqual(loaded_model.to_dict()['custom_attribute'], "Test Reload")
+        # self.assertFalse("custom_attribute" in loaded_model.to_dict())
+        self.assertTrue("custom_attribute" in loaded_model.to_dict())
+        self.assertEqual(loaded_model.to_dict()["custom_attribute"], "Test Reload")
 
     def tearDown(self):
         """Tear down the tests"""
