@@ -12,7 +12,7 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
-from datetime import datetime
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -128,13 +128,13 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(obj))
         print(obj_list)
 
-    def do_update(self, args):
+    def do_update(self, arg):
         """Updates an instance based on the class name and id."""
+        args = shlex.split(arg)
         if not args:
             print("** class name missing **")
             return
 
-        args = args.split()
         class_name = args[0]
 
         if class_name not in ["BaseModel", "User"]:
@@ -169,7 +169,6 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute doesn't exist **")
             return
         setattr(instance, attribute_name, attribute_value)
-        print("Updated attributes:", instance.__dict__)
         instance.save()
 
 
