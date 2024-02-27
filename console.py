@@ -159,6 +159,7 @@ class HBNBCommand(cmd.Cmd):
         attribute_value = " ".join(args[3:])
 
         instance = storage.all()[key]
+        print("Existing attributes:", instance.__dict__)
 
         if attribute_name in ["id", "created_at", "updated_at"]:
             print("** attribute cannot be updated **")
@@ -168,8 +169,9 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute doesn't exist **")
             return
         setattr(instance, attribute_name, attribute_value)
+        print("Updated attributes:", instance.__dict__)
         instance.save()
-        print("Attribute {} updated".format(attribute_name))
+        storage.save()
 
 
 if __name__ == "__main__":
