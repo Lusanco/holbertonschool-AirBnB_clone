@@ -43,33 +43,24 @@ class FileStorage:
         from models.amenity import Amenity
         from models.review import Review
 
+        my_class = {
+            'BaseModel': BaseModel,
+            'User': User,
+            'Place': Place,
+            'State': State,
+            'City': City,
+            'Amenity': Amenity,
+            'Review': Review
+        }
+
         try:
             with open(self.__file_path, 'r') as file:
                 json_dictionary = json.load(file)
                 for key, value in json_dictionary.items():
                     class_name = value["__class__"]
-                    if class_name == 'User':
-                        obj = class_name(**value)
+                    if class_name in my_class:
+                        obj = my_class[class_name](**value)
                         self.__objects[key] = obj
-                    elif class_name == "BaseModel":
-                        obj = class_name(**value)
-                        self.__objects[key] = obj
-                    elif class_name == "Place":
-                        obj = class_name(**value)
-                        self.__objects[key] = obj
-                    elif class_name == "State":
-                        obj = class_name(**value)
-                        self.objects[key] = obj
-                    elif class_name == "City":
-                        obj = class_name(**value)
-                        self.objects[key] = obj
-                    elif class_name == "Amenity":
-                        obj = class_name(**value)
-                        self.objects[key] = obj
-                    elif class_name == "Review":
-                        obj = class_name(**value)
-                        self.objects[key] = obj
-                    
-        
+
         except FileNotFoundError:
             pass
