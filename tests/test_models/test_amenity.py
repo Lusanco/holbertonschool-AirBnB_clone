@@ -10,7 +10,8 @@ class TestAmenity(unittest.TestCase):
     def test_name(self):
         a = Amenity()
         a.name = "Amenity"
-        self.assertEqual(a.name, str)
+        # self.assertEqual(a.name, str)
+        self.assertIsInstance(a.name, str)
 
     def test_id(self):
         a1 = Amenity()
