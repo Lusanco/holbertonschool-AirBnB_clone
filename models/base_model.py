@@ -50,14 +50,8 @@ class BaseModel:
         """Copies dictionary"""
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
-
-        # Check if updated_at is a string or a datetime object
-        if isinstance(self.updated_at, str):
-            result["updated_at"] = self.updated_at
-        else:
-            result["updated_at"] = self.updated_at.isoformat()
-
         result["created_at"] = self.created_at.isoformat()
+        result["updated_at"] = self.updated_at.isoformat()
         return result
 
     def reload(self):
