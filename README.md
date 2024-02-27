@@ -7,6 +7,7 @@
 - [Installation](#installation)
 - [Available commands](#available-commands)
 - [File Structure](#file-structure)
+- [Resources](#resources)
 - [Authors](#authors)
 
 ## Description
@@ -47,7 +48,7 @@ cd <project-directory>
 - 'update <class_name> <instance.id> <attribute_name> "<attribute_value>"' : Update an instance attribute based on the class name and ID.
 - 'count()' : Prints total number of instances of a class or all instances.
 
-# File Structure
+## File Structure
 
 The project contains the following files:
 
@@ -59,6 +60,14 @@ The project contains the following files:
 - __init__.py: Initializes the project as a Python module.
 - Other files: Define sub-classes such as Amenity, City, Place, Review, and State, all of which inherit from BaseModel.
 
-# Authors
+## Resources
+- *[Args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/)*
+- *[Cmd module](http://docs.python.org/3.4/library/cmd.html)*
+- *[Uuid module](http://docs.python.org/3.4/library/uuid.html)*
+- *[Datetime](http://docs.python.org/3.4/library/datetime.html)*
+- *[Unittest module](https://docs.python.org/3.4/library/unittest.html#module-unittest)*
+- *[Python test cheatsheet](https://www.pythonsheets.com/notes/python-tests.html)*
+- *[Packages concept page](https://www.geeksforgeeks.org/python-packages/)*
+## Authors
 - [Luis Santiago](https://github.com/Lusanco)
 - [Livan Hernandez](https://github.com/Livanhernandez)
