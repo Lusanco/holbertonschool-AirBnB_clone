@@ -35,19 +35,25 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it, and prints the id."""
+
         if not args:
             print("** class name missing **")
             return
 
-        class_name = args.split()[0]
+        class_name = args
 
-        if class_name not in ["User"]:
+        if class_name not in ["BaseModel", "User"]:
             print("** class doesn't exist **")
             return
 
-        new_instance = User()
-        new_instance.save()
-        print(new_instance.id)
+        if class_name == "User":
+            new_instance = User()
+            new_instance.save()
+            print(new_instance.id)
+        else:
+            new_instance = BaseModel()
+            new_instance.save()
+            print(new_instance.id)
 
     def do_show(self, args):
         """Prints the string representation of an instance."""
@@ -165,7 +171,6 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attribute_name, attribute_value)
         print("Updated attributes:", instance.__dict__)
         instance.save()
-        storage.save()
 
 
 if __name__ == "__main__":
