@@ -11,6 +11,7 @@ Author: Livanhernandez, Lusanco
 from models import storage
 from datetime import datetime
 import uuid
+from models.user import User
 
 
 class BaseModel:
