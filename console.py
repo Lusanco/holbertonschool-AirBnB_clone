@@ -159,11 +159,6 @@ class HBNBCommand(cmd.Cmd):
         attribute_value = " ".join(args[3:])
 
         instance = storage.all()[key]
-        print("Existing attributes:", instance.__dict__)
-
-        if attribute_name in ["id", "created_at", "updated_at"]:
-            print("** attribute cannot be updated **")
-            return
 
         if not hasattr(instance, attribute_name):
             print("** attribute doesn't exist **")
