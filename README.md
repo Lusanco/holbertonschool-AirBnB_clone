@@ -30,6 +30,12 @@ To update an instance:
 To list all instance of a class:
 `(hbnb) all BaseModel`
 
+To quit:
+`(hbnb) quit` or CTRL+D
+
+If you need help:
+`(hbnb) help`
+
 # File Structure
 
 The project contains the following files:
