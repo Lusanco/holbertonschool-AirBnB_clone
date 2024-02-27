@@ -46,7 +46,6 @@ class BaseModel:
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
         result["created_at"] = self.created_at.isoformat()
-        print(f"{self.updated_at}")
         result["updated_at"] = self.updated_at.isoformat()
         return result
 

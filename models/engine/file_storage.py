@@ -28,9 +28,9 @@ class FileStorage:
     def save(self):
         """Saves JSON dict"""
         json_dict = {}
-        for key, value in FileStorage.__objects.items():
-            json_dict[key] = value.to_dict()
-        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as file:
+        for key, obj in FileStorage.__objects.items():
+            json_dict[key] = obj.to_dict()
+        with open(FileStorage.__file_path, "w") as file:
             json.dump(json_dict, file)
 
     def reload(self):
@@ -38,19 +38,17 @@ class FileStorage:
         from models.base_model import BaseModel
         from models.user import User
         try:
-            with open(FileStorage.__file_path, mode='r', encoding="utf-8") as file:
+            with open(self.__file_path, 'r') as file:
                 json_dictionary = json.load(file)
                 for key, value in json_dictionary.items():
-                    class_name, obj_id = key.split(".")
-                    obj_dict = value
-                    obj_dict["__class__"] = class_name
+                    class_name = value["__class__"]
                     if class_name == 'User':
                         cls = User
-                    if class_name == "BaseModel":
+                        obj = cls(**value)
+                        self.__objects[key] = obj
+                    elif class_name == "BaseModel":
                         cls = BaseModel
-                    else:
-                        continue
-                    obj = cls(**value)
-                    FileStorage.__objects[key] = obj
+                        obj = cls(**value)
+                    self.__objects[key] = obj
         except FileNotFoundError:
             pass

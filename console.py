@@ -50,21 +50,23 @@ class HBNBCommand(cmd.Cmd):
             new_instance = User()
             new_instance.save()
             print(new_instance.id)
+        
         else:
             new_instance = BaseModel()
             new_instance.save()
             print(new_instance.id)
+        storage.save()
 
     def do_show(self, args):
         """Prints the string representation of an instance."""
+        args = args.split()
         if not args:
             print("** class name missing **")
             return
 
-        args = args.split()
         class_name = args[0]
 
-        if class_name not in ["BaseModel"]:
+        if class_name not in ["BaseModel", "User"]:
             print("** class doesn't exist **")
             return
 
@@ -131,6 +133,8 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Updates an instance based on the class name and id."""
         args = shlex.split(arg)
+        args = args[:4]
+
         if not args:
             print("** class name missing **")
             return
@@ -155,21 +159,18 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 3:
             print("** attribute name missing **")
             return
+        attribute_name = args[2]
 
         if len(args) < 4:
             print("** value missing **")
             return
 
-        attribute_name = args[2]
+
         attribute_value = " ".join(args[3:])
-
         instance = storage.all()[key]
-
-        if not hasattr(instance, attribute_name):
-            print("** attribute doesn't exist **")
-            return
         setattr(instance, attribute_name, attribute_value)
         instance.save()
+        storage.save()
 
 
 if __name__ == "__main__":
