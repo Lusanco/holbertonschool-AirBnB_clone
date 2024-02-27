@@ -13,7 +13,6 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from datetime import datetime
-from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -132,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         class_name = args[0]
 
-        if class_name not in ["User"]:
+        if class_name not in ["BaseModel", "User"]:
             print("** class doesn't exist **")
             return
 
