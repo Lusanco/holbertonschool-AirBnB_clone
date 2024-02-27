@@ -132,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         class_name = args[0]
 
-        if class_name not in ["BaseModel", "User"]:
+        if class_name not in ["User"]:
             print("** class doesn't exist **")
             return
 
@@ -164,13 +164,12 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute cannot be updated **")
             return
 
-        if hasattr(instance, attribute_name):
-            setattr(instance, attribute_name, attribute_value)
-            instance.save()
-            storage.save()
-            print("Attribute {} updated".format(attribute_value))
-        else:
+        if not hasattr(instance, attribute_name):
             print("** attribute doesn't exist **")
+            return
+        setattr(instance, attribute_name, attribute_value)
+        instance.save()
+        print("Attribute {} updated".format(attribute_name))
 
 
 if __name__ == "__main__":
