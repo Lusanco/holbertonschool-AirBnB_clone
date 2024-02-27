@@ -14,10 +14,10 @@ class TestUser(unittest.TestCase):
         u.password = "secretpass"
         u.first_name = "User"
         u.last_name = "Somebaddie"
-        self.assertTrue(u.email, str)
-        self.assertTrue(u.password, str)
-        self.assertTrue(u.first_name, str)
-        self.assertTrue(u.last_name, str)
+        self.assertEqual(u.email, str)
+        self.assertEqual(u.password, str)
+        self.assertEqual(u.first_name, str)
+        self.assertEqual(u.last_name, str)
         self.assertIsInstance(u.email, str)
         self.assertIsInstance(u.password, str)
         self.assertIsInstance(u.first_name, str)
