@@ -2,9 +2,9 @@
 
 """
 Module: file_storage
-Descri: class FileStorage that serializes
-instances to a JSON file and deserializes
-JSON file to instances
+Descri: class FileStorage that serializes instances to a JSON
+file and deserializes JSON file
+to instances
 Author: Livanhernandez, Lusanco
 """
 
@@ -44,17 +44,17 @@ class FileStorage:
         from models.review import Review
 
         my_class = {
-            'BaseModel': BaseModel,
-            'User': User,
-            'Place': Place,
-            'State': State,
-            'City': City,
-            'Amenity': Amenity,
-            'Review': Review
+            "BaseModel": BaseModel,
+            "User": User,
+            "Place": Place,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Review": Review,
         }
 
         try:
-            with open(self.__file_path, 'r') as file:
+            with open(self.__file_path, "r") as file:
                 json_dictionary = json.load(file)
                 for key, value in json_dictionary.items():
                     class_name = value["__class__"]

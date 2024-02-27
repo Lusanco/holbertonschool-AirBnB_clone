@@ -4,12 +4,13 @@ import unittest
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
+
 class TestAmenity(unittest.TestCase):
 
     def test_name(self):
         a = Amenity()
-        a.name = "amenity name"
-        self.assertEqual(a, str)
+        a.name = "Amenity"
+        self.assertEqual(a.name, str)
 
     def test_id(self):
         a1 = Amenity()
