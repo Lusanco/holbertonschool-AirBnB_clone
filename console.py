@@ -25,6 +25,16 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    my_class = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review
+    }
+
     def do_quit(self, args):
         """Quit command to exit the program"""
         return True
@@ -47,19 +57,13 @@ class HBNBCommand(cmd.Cmd):
 
         class_name = args
 
-        if class_name not in ["BaseModel", "User"]:
+        if class_name not in self.my_class:
             print("** class doesn't exist **")
             return
 
-        if class_name == "User":
-            new_instance = User()
-            new_instance.save()
-            print(new_instance.id)
-        
-        else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+        new_instance = self.my_class[class_name]()
+        new_instance.save()
+        print(new_instance.id)
         storage.save()
 
     def do_show(self, args):
@@ -71,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
 
         class_name = args[0]
 
-        if class_name not in ["BaseModel", "User"]:
+        if class_name not in self.my_class:
             print("** class doesn't exist **")
             return
 
@@ -97,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         class_name = args[0]
 
-        if class_name not in ["BaseModel", "User"]:
+        if class_name not in self.my_class:
             print("** class doesn't exist **")
             return
 
@@ -146,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
 
         class_name = args[0]
 
-        if class_name not in ["BaseModel", "User"]:
+        if class_name not in self.my_class:
             print("** class doesn't exist **")
             return
 
