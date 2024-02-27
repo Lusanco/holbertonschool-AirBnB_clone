@@ -45,6 +45,8 @@ class FileStorage:
                     class_name, obj_id = key.split(".")
                     obj_dict = value
                     obj_dict["__class__"] = class_name
+                    if class_name == 'User':
+                        from models.user import User
                     obj = eval(class_name)(**obj_dict)
                     FileStorage.__objects[key] = obj
         except FileNotFoundError:
