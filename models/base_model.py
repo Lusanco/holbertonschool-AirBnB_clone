@@ -22,7 +22,11 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at" or key == "update_at":
-                        setattr(self, key, datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                        setattr(
+                            self,
+                            key,
+                            datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"),
+                        )
                     else:
                         setattr(self, key, value)
         else:
@@ -38,6 +42,7 @@ class BaseModel:
     def save(self):
         """Saves the current instance to the storage"""
         from models import storage
+
         self.updated_at = datetime.datetime.now()
         storage.save()
 
@@ -45,12 +50,19 @@ class BaseModel:
         """Copies dictionary"""
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
+
+        # Check if updated_at is a string or a datetime object
+        if isinstance(self.updated_at, str):
+            result["updated_at"] = self.updated_at
+        else:
+            result["updated_at"] = self.updated_at.isoformat()
+
         result["created_at"] = self.created_at.isoformat()
-        result["updated_at"] = self.updated_at.isoformat()
         return result
 
     def reload(self):
         from models import storage
+
         all_objects = storage.all()
         key = "{}.{}".format(self.__class__.__name__, self.id)
         if key in all_objects:

@@ -12,9 +12,7 @@ class TestCity(unittest.TestCase):
         c = City()
         c.state_id = "123"
         c.name = "city"
-        # self.assertEqual(c.state_id, str)
         self.assertIsInstance(c.state_id, str)
-        # self.assertEqual(c.name, str)
         self.assertIsInstance(c.name, str)
 
     def test_id(self):
