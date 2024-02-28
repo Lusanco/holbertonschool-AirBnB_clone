@@ -25,7 +25,8 @@ class BaseModel:
                         setattr(
                             self,
                             key,
-                            datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"),
+                            datetime.datetime.strptime(
+                                value, "%Y-%m-%dT%H:%M:%S.%f"),
                         )
                     else:
                         setattr(self, key, value)
@@ -37,12 +38,12 @@ class BaseModel:
 
     def __str__(self):
         """Returns str in representation of an object"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Saves the current instance to the storage"""
         from models import storage
-
         self.updated_at = datetime.datetime.now()
         storage.save()
 
@@ -56,7 +57,6 @@ class BaseModel:
 
     def reload(self):
         from models import storage
-
         all_objects = storage.all()
         key = "{}.{}".format(self.__class__.__name__, self.id)
         if key in all_objects:
