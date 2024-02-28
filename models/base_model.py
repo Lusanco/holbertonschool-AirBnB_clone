@@ -52,13 +52,18 @@ class BaseModel:
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
         result["created_at"] = self.created_at.isoformat()
-        result["updated_at"] = self.updated_at.isoformat()
+        result["updated_at"] = (
+            self.updated_at.isoformat()
+            if isinstance(self.updated_at, datetime.datetime)
+            else str(self.updated_at)
+        )
         return result
 
-    def reload(self):
-        from models import storage
-        all_objects = storage.all()
-        key = "{}.{}".format(self.__class__.__name__, self.id)
-        if key in all_objects:
-            obj = all_objects[key]
-            self.__dict__.update(obj.__dict__)
+    # def reload(self):
+    #     from models import storage
+
+    #     all_objects = storage.all()
+    #     key = "{}.{}".format(self.__class__.__name__, self.id)
+    #     if key in all_objects:
+    #         obj = all_objects[key]
+    #         self.__dict__.update(obj.__dict__)
