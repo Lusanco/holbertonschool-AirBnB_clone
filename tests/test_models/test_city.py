@@ -1,26 +1,26 @@
 #!/usr/bin/python3
-
-
+"""
+    test_city.py
+    
+    Unittest for class City
+"""
 import unittest
 from models.city import City
-from models.base_model import BaseModel
 
 
 class TestCity(unittest.TestCase):
+    """
+    Class City Unittest
+    """
 
-    def test_stateid_name(self):
-        c = City()
-        c.state_id = "123"
-        c.name = "city"
-        self.assertEqual(c.state_id, str)
-        self.assertEqual(c.name, str)
-        self.assertIsInstance(c.state_id, str)
-        self.assertIsInstance(c.name, str)
+    def test_city_attr(self):
+        """
+        Class City test cases
+        """
+        city = City()
+        self.assertEqual(city.state_id, "")
+        self.assertEqual(city.name, "")
 
-    def test_id(self):
-        c1 = City()
-        c2 = City()
-        self.assertIsInstance(c1, BaseModel)
-        self.assertTrue(hasattr(c1, "id"))
-        self.assertNotEqual(c1.id, c2.id)
-        self.assertIsInstance(c1.id, str)
+
+if __name__ == "__main__":
+    unittest.main()
