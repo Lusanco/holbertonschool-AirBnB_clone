@@ -25,7 +25,8 @@ class BaseModel:
                         setattr(
                             self,
                             key,
-                            datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"),
+                            datetime.datetime.strptime(
+                                value, "%Y-%m-%dT%H:%M:%S.%f"),
                         )
                     else:
                         setattr(self, key, value)
@@ -37,7 +38,8 @@ class BaseModel:
 
     def __str__(self):
         """Returns str in representation of an object"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Saves the current instance to the storage"""
