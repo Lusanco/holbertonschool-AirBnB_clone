@@ -174,7 +174,6 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-
         attribute_value = " ".join(args[3:])
         instance = storage.all()[key]
         setattr(instance, attribute_name, attribute_value)
