@@ -58,11 +58,11 @@ class BaseModel:
         )
         return result
 
-    def reload(self):
-        from models import storage
+    # def reload(self):
+    #     from models import storage
 
-        all_objects = storage.all()
-        key = "{}.{}".format(self.__class__.__name__, self.id)
-        if key in all_objects:
-            obj = all_objects[key]
-            self.__dict__.update(obj.__dict__)
+    #     all_objects = storage.all()
+    #     key = "{}.{}".format(self.__class__.__name__, self.id)
+    #     if key in all_objects:
+    #         obj = all_objects[key]
+    #         self.__dict__.update(obj.__dict__)
