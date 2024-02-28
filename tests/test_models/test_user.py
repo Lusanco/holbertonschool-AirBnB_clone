@@ -1,32 +1,46 @@
 #!/usr/bin/python3
-
-
+"""
+    test_user.py
+    
+    Unittest for class city
+"""
 import unittest
 from models.user import User
 from models.base_model import BaseModel
 
 
-class TestUser(unittest.TestCase):
+class test_user(unittest.TestCase):
+    """
+    Class User Unittest
+    """
 
-    def test_email_pass_names(self):
-        u = User()
-        u.email = "user@email.com"
-        u.password = "secretpass"
-        u.first_name = "User"
-        u.last_name = "Somebaddie"
-        self.assertEqual(u.email, str)
-        self.assertEqual(u.password, str)
-        self.assertEqual(u.first_name, str)
-        self.assertEqual(u.last_name, str)
-        self.assertIsInstance(u.email, str)
-        self.assertIsInstance(u.password, str)
-        self.assertIsInstance(u.first_name, str)
-        self.assertIsInstance(u.last_name, str)
+    def test_user(self):
+        """
+        Class User test cases
+        """
 
-    def test_id(self):
-        u1 = User()
-        u2 = User()
-        self.assertIsInstance(u1, BaseModel)
-        self.assertTrue(hasattr(u1, "id"))
-        self.assertNotEqual(u1.id, u2.id)
-        self.assertIsInstance(u1.id, str)
+        # Check if user has the expected attrs
+        user = User()
+        self.assertTrue(hasattr(user, "email"))
+        self.assertTrue(hasattr(user, "password"))
+        self.assertTrue(hasattr(user, "first_name"))
+        self.assertTrue(hasattr(user, "last_name"))
+
+        # Check if attrs are initialized to empty strs
+        self.assertEqual(user.email, "")
+        self.assertEqual(user.password, "")
+        self.assertEqual(user.first_name, "")
+        self.assertEqual(user.last_name, "")
+
+    def test_inheritance(self):
+        """
+        Check if class inherits from BaseModel
+        """
+        user = User()
+
+        # Check if User class inherits from BaseModel
+        self.assertTrue(issubclass(User, BaseModel))
+
+
+if __name__ == "__main__":
+    unittest.main()

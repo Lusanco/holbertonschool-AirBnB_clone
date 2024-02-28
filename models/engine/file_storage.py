@@ -60,6 +60,7 @@ class FileStorage:
                     class_name = value["__class__"]
                     if class_name in my_class:
                         obj = my_class[class_name](**value)
+                        obj.reload()  # Add this line to reload the instance
                         self.__objects[key] = obj
 
         except FileNotFoundError:

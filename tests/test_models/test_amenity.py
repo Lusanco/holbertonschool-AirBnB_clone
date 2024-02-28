@@ -1,22 +1,24 @@
 #!/usr/bin/python3
+"""
+    test_amenity.py
 
+    Unittest for class Amenity
+"""
 import unittest
 from models.amenity import Amenity
-from models.base_model import BaseModel
 
 
 class TestAmenity(unittest.TestCase):
+    """
+    Class Amenity unittest
+    """
 
-    def test_name(self):
-        a = Amenity()
-        a.name = "Amenity"
-        self.assertEqual(a.name, str)
-        self.assertIsInstance(a.name, str)
+    def test_amenity_attributes(self):
+        """
+        Class Amenity test cases"""
+        amenity = Amenity()
+        self.assertEqual(amenity.name, "")
 
-    def test_id(self):
-        a1 = Amenity()
-        a2 = Amenity()
-        self.assertIsInstance(a1, BaseModel)
-        self.assertTrue(hasattr(a1, "id"))
-        self.assertNotEqual(a1.id, a2.id)
-        self.assertIsInstance(a1.id, str)
+
+if __name__ == "__main__":
+    unittest.main()

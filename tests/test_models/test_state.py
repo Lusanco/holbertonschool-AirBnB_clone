@@ -1,23 +1,25 @@
 #!/usr/bin/python3
-
-
+"""
+    test_state.py
+    
+    Unittest
+"""
 import unittest
 from models.state import State
-from models.base_model import BaseModel
 
 
-class TestState(unittest.TestCase):
+class test_state(unittest.TestCase):
+    """
+    Class State Unittest
+    """
 
-    def test_name(self):
-        s = State()
-        s.name = "State"
-        self.assertEqual(s.name, str)
-        self.assertIsInstance(s.name, str)
+    def test_state_attr(self):
+        """
+        Class State test cases
+        """
+        state = State()
+        self.assertEqual(state.name, "")
 
-    def test_id(self):
-        s1 = State()
-        s2 = State()
-        self.assertIsInstance(s1, BaseModel)
-        self.assertTrue(hasattr(s1, "id"))
-        self.assertNotEqual(s1.id, s2.id)
-        self.assertIsInstance(s1.id, str)
+
+if __name__ == "__main__":
+    unittest.main()

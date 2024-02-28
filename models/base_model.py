@@ -51,7 +51,11 @@ class BaseModel:
         result = self.__dict__.copy()
         result["__class__"] = self.__class__.__name__
         result["created_at"] = self.created_at.isoformat()
-        result["updated_at"] = self.updated_at.isoformat()
+        result["updated_at"] = (
+            self.updated_at.isoformat()
+            if isinstance(self.updated_at, datetime.datetime)
+            else str(self.updated_at)
+        )
         return result
 
     def reload(self):
