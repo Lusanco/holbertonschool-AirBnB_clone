@@ -13,6 +13,9 @@ class TestReview(unittest.TestCase):
         r.place_id = "Somewhere"
         r.user_id = "Review"
         r.text = "Reviewing"
+        self.assertEqual(r.place_id, str)
+        self.assertEqual(r.user_id, str)
+        self.assertEqual(r.text, str)
         self.assertIsInstance(r.place_id, str)
         self.assertIsInstance(r.user_id, str)
         self.assertIsInstance(r.text, str)

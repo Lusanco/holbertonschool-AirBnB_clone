@@ -21,6 +21,18 @@ class TestPlace(unittest.TestCase):
         p.latitude = 5.6
         p.longitude = -7.8
         p.amenity_ids = ["9", "10", "11"]
+        self.assertEqual(p.city_id, str)
+        self.assertEqual(p.user_id, str)
+        self.assertEqual(p.name, str)
+        self.assertEqual(p.description, str)
+        self.assertEqual(p.number_rooms, int)
+        self.assertEqual(p.number_bathrooms, int)
+        self.assertEqual(p.max_guest, int)
+        self.assertEqual(p.price_by_night, int)
+        self.assertEqual(p.latitude, float)
+        self.assertEqual(p.longitude, float)
+        self.assertEqual(p.amenity_ids, list)
+        self.assertEqual(p.amenity_ids[0], str)
         self.assertIsInstance(p.city_id, str)
         self.assertIsInstance(p.user_id, str)
         self.assertIsInstance(p.name, str)

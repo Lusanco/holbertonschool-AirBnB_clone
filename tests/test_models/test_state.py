@@ -11,6 +11,7 @@ class TestState(unittest.TestCase):
     def test_name(self):
         s = State()
         s.name = "State"
+        self.assertEqual(s.name, str)
         self.assertIsInstance(s.name, str)
 
     def test_id(self):
