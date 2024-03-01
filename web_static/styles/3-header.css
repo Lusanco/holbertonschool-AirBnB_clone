@@ -1,0 +1,17 @@
+header {
+  background-color: white;
+  height: 70px;
+  width: 100%;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 70px; /* Adjust based on your actual logo size */
+  margin-left: 20px;
+}
