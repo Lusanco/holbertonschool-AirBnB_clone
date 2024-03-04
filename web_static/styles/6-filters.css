@@ -18,7 +18,7 @@
   border-radius: 4px;
   margin: auto 30px auto 0;
   position: relative;
-  left: 27%;
+  left: 24%;
 }
 
 .filters button:hover {
@@ -28,7 +28,7 @@
 .locations {
   height: 100%;
   width: 25%;
-  padding-right: 2.5rem;
+  padding-right: 3rem;
   border-right: #dddddd solid 1px;
 }
 
