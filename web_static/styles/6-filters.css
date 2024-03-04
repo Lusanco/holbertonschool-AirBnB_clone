@@ -5,6 +5,7 @@
   border: 1px solid #dddddd;
   border-radius: 4px;
   display: flex;
+  justify-content: stretch;
 }
 
 .filters button {
@@ -27,6 +28,7 @@
 .locations {
   height: 100%;
   width: 25%;
+  padding-right: 2.5rem;
   border-right: #dddddd solid 1px;
 }
 
@@ -61,8 +63,9 @@
   background-color: #fafafa;
   border: #dddddd solid 1px;
   border-radius: 4px;
-  margin-top: -2.5%;
+  margin-top: -0.4rem;
   padding-bottom: 1rem;
+  width: 100%;
 }
 
 .popover h2 {
